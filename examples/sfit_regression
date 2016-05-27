@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rm *.dat
+#rm sfit3_large sfit3_linear sfit4_large sfit4_linear
+#find -name "*.cpp" | sed 's/\.cpp//g'|xargs rm
+find . -name "*.cpp" -type f -print0 | sed 's/\.cpp//g' | xargs -0 /bin/rm -f
+
+./run_sfit 3 linear -v1 | tee sfit_regression.log
+./run_sfit 3 large -v1  | tee -a sfit_regression.log
+
+./run_sfit 4 linear -v1 | tee -a sfit_regression.log
+./run_sfit 4 large -v1  | tee -a sfit_regression.log
+
+
+

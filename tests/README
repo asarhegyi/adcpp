@@ -1,0 +1,13 @@
+unit tests:
+	fileio usage:
+		make -f ../Makefile TARGET=fileio
+		./fileio
+
+	spectrum usage:
+		make -f ../Makefile TARGET=spectrum
+		./spectrum
+
+
+
+
+testbench.py : python testbench module for Monte Carlo simulations

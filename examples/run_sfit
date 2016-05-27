@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Compile the source file
+cmd0="make -f ../Makefile TARGET=sfit$1_$2"
+echo -e "\n$cmd0\n"; $cmd0
+
+
+# Run the executable
+cmd1="./sfit$1_$2 -f1000.0445712 -s500000 -r0 $3 ../charData/test.int"
+
+#cmd1="./sfit$1_$2 -f191655.29098 -s2500000000 -r0 $3 ../charData/vref_xtalk_short.txt"
+
+#cmd1="./sfit$1_$2 -f81.34 -s1000000 -r0 $3 ../charData/dacout_sine.txt" 
+
+echo -e "\n$cmd1\n"; $cmd1
+
+
+# Plot results
+#cmd2="python plot_sfit.py"
+#echo -e "\n$cmd2\n"; $cmd2
