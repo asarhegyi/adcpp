@@ -146,6 +146,8 @@ if exist('sample_rate','var')
     if sample_rate<=0, 
         warning('sample_rate is not positive'); 
     end
+    
+    Ts = 1/sample_rate;
 end
 
 
@@ -218,32 +220,38 @@ if ~w %w is 0, no initial frequency is given
         
         ym=zeros(Nt,1);
         ym(tvecti)=data;
-        F=abs(fft(ym));
+        Fc=fft(ym);
+        F=abs(Fc);
         [Mfft,w]=max(F(2:round(Nt/2)));
-        w=2*pi*w/Nt/Ts;
     else
         Fc=fft(data);
         F=abs(Fc);
         [Mfft,w]=max(F(2:round(N/2)));
+    end
         
-        if strcmpi(mode,'ipfft')
-            if w>1
-                %calculating the 2 points, between them the estimated frequency is
-                if F(w-1)>F(w+1) w=w-1; end
-            end
-            
-            n=2*pi/N;
-            U=real(Fc(w+1));    V=imag(Fc(w+1));
-            U1=real(Fc(w+2));  V1=imag(Fc(w+2));
-            Kopt=(sin(n*w)*(V1-V)+cos(n*w)*(U1-U))/(U1-U);
-            Z1=V*(Kopt-cos(n*w))/sin(n*w)+U;
-            Z2=V1*(Kopt-cos(n*(w+1)))/sin(n*(w+1))+U1;
-            
-            lambda=acos((Z2*cos(n*(w+1))-Z1*cos(n*w))/(Z2-Z1))/n;
-            w=lambda;
+    if strcmpi(mode,'ipfft')
+        if w>1
+            %calculating the 2 points, between them the estimated frequency is
+            if F(w-1)>F(w+1) w=w-1; end
         end
+            
+        n=2*pi/N;
+        U=real(Fc(w+1));    V=imag(Fc(w+1));
+        U1=real(Fc(w+2));  V1=imag(Fc(w+2));
+        Kopt=(sin(n*w)*(V1-V)+cos(n*w)*(U1-U))/(U1-U);
+        Z1=V*(Kopt-cos(n*w))/sin(n*w)+U;
+        Z2=V1*(Kopt-cos(n*(w+1)))/sin(n*(w+1))+U1;
+            
+        lambda=acos((Z2*cos(n*(w+1))-Z1*cos(n*w))/(Z2-Z1))/n;
+        w=lambda;
+    end
+
+    if ~unisamp
+        w=2*pi*w/Nt/Ts;
+    else
         w=2*pi*w/N/Ts;
     end
+    
 end
 
 

@@ -24,7 +24,7 @@ function [X, Rn, Q]=sfit4(data, varargin)
 % See also SFIT3, SFIT4IMP
 
 
-% Written by Zoltán Tamás Bilau, modified by Janos Markus
+% Written by Zoltan Tamas Bilau, modified by Janos Markus
 % $Id: sfit4.m,v 3.0 2004/04/19 11:20:09 markus Exp $
 % Copyright (c) 2001-2004 by Istvan Kollar and Janos Markus
 % All rights reserved.
