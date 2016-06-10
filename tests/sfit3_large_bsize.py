@@ -12,6 +12,7 @@ __copyright__   = "Copyright 2009-2015, Planet Earth"
 import sys
 import subprocess
 import numpy as np
+import os, glob, shutil
 import matplotlib.pyplot as plt
 from collections import namedtuple
 
@@ -112,7 +113,19 @@ plt.grid(True)
 plt.show()
 
 
-# delete symlinks from the current directory        
-testbench.cleanup(linkList)
-# delete compiled files        
-testbench.cleanup(ccList)
+# Clean up the current working directory
+if not 'debug' in args:
+    # delete symlinks        
+    testbench.cleanup(linkList)
+
+    # delete compiled files        
+    testbench.cleanup(ccList)
+
+
+# Move estimation results into a subdirectory for post-processing
+os.mkdir("results")
+for file in glob.glob('*.est'):
+    shutil.move(file, "results/")
+
+shutil.move("avg_exec_time_sfit3_large.txt", "results/")
+

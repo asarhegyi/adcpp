@@ -1,22 +1,41 @@
-%%MATLAB
-function out = diff_results(args)
+%% MATLAB
+function out = plot_deltahist(args)
+
+
+% This script calculates the differences of the estimation
+% results of two algorithms from the Monte Carlo simulation,
+% also plots the delta sequence and the histogram.
+%
+%       out = plot_deltahist(args)
+%        
+%       Input arguments:
+%         args.arg1: the name of the first file to process
+%         args.arg2: the name of the second file to process
+%
+%       This program is public domain. It is available through
+%       https://github.com/asarhegyi/
+
+% $Id:  $
+% Copyright (c) 2015-2016 by Attila Sarhegyi
+% All rights reserved.
+
 
     %close all;
 
     filename1 = args.arg1;
     filename2 = args.arg2;
     
-	split1=strread(filename1,'%s','delimiter','.');
-	fname1_noext = split1{1};
-	title1a = strrep(fname1_noext, '_', ' ');
-	title1b = strrep(title1a, 'cpp', 'C++');
-	title1c = strrep(title1b, 'matlab', 'MATLAB');
+    split1=strread(filename1,'%s','delimiter','.');
+    fname1_noext = split1{1};
+    title1a = strrep(fname1_noext, '_', ' ');
+    title1b = strrep(title1a, 'cpp', 'C++');
+    title1c = strrep(title1b, 'matlab', 'MATLAB');
     
-	split=strread(filename2,'%s','delimiter','.');
-	fname2_noext = split{1};
-	title2a = strrep(fname2_noext, '_', ' ');
-	title2b = strrep(title2a, 'cpp', 'C++');
-	title2c = strrep(title2b, 'matlab', 'MATLAB');
+    split=strread(filename2,'%s','delimiter','.');
+    fname2_noext = split{1};
+    title2a = strrep(fname2_noext, '_', ' ');
+    title2b = strrep(title2a, 'cpp', 'C++');
+    title2c = strrep(title2b, 'matlab', 'MATLAB');
 
     %%%%%%%%%% load Monte Carlo results %%%%%%%%%%
 

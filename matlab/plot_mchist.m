@@ -1,16 +1,40 @@
-%%MATLAB
-function out = plot_results(args)
+%% MATLAB
+function out = plot_mchist(args)
+
+
+% This script calculates and plots the histogram of the
+% Monte Carlo simulation. The parameters of the stimulus
+% is saved in stimulus.dat, which is compared with the
+% estimation results saved in the *.est files for each
+% algorithm.
+%
+%       out = plot_mchist(args)
+%        
+%       Input arguments:
+%         args.arg1: the name of the .est file to process
+%         args.arg2: plot format : 'individual' plots the
+%                histogram of amplitude, frequency, phase,
+%                and dc in separate figures; 'subplot' creates
+%                a single figure with 4 subplots for histograms
+%
+%       This program is public domain. It is available through
+%       https://github.com/asarhegyi/
+
+% $Id:  $
+% Copyright (c) 2015-2016 by Attila Sarhegyi
+% All rights reserved.
+
 
     %close all;
 
     filename = args.arg1;
     mode = args.arg2;
     
-	split=strread(filename,'%s','delimiter','.');
-	fname_noext = split{1};
+    split=strread(filename,'%s','delimiter','.');
+    fname_noext = split{1};
 
-	if strcmp('subplot', mode)
-		plotformat = 'subplot';
+    if strcmp('subplot', mode)
+        plotformat = 'subplot';
     elseif strcmp('resolution', mode)
         plotformat = 'resolution';
     else

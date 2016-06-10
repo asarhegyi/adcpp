@@ -35,7 +35,7 @@ function [X, Rn, Q]=sfit4imp(data, varargin)
 % All rights reserved.
 
 if ~isnumeric(data), error('Sample vector is not numeric'); end
-if length(size(data))>2, error('Dimension of the data vector is more than 2');	end
+if length(size(data))>2, error('Dimension of the data vector is more than 2');    end
 if min(size(data))>1, error('The data array is not a vector'); end
 
 N=length(data);

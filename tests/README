@@ -7,7 +7,24 @@ unit tests:
 		make -f ../Makefile TARGET=spectrum
 		./spectrum
 
+	mypymatbridge.py tests the python-matlab-bridge setup
+		usage: python3 mypymatbridge.py
 
 
 
 testbench.py : python testbench module for Monte Carlo simulations
+
+sfit_montecarlo.py : Runs a Monte Carlo simulation on the sfit3_linear, sfit4_large, sfit3.m, sfit4_linear, sfit4_large, sfit4.m algorithms and dumps the estimation results into text files (*.est)
+
+postprocess.py : post-processes the results of the Monte Carlo simulation (*.est files), plots histograms, and saves them in EPS format
+
+
+verify_stimulus.py : It calls multiple scripts to generate a stimulus, compare it with MATLAB, and plot the results
+	|
+	|
+	--testbench.py
+	|
+	|
+	--gen_stimulus.cpp : it instantiates the stimulus class and generates a noisy and quantized signal, the ideal code transition levels and dump the waveforms into *.dat files.
+
+
