@@ -66,9 +66,9 @@ Parameters:
 def run_sfitcpp(numParams, sfitMode, Stimulus, numHarmonics, inputFile, *varags):
 
     if not varags:  # no blockSize define
-        cmd1="./sfit"+str(numParams)+"_"+sfitMode+" -f"+Stimulus.frequency+" -s"+Stimulus.fs+" -r"+str(numHarmonics)+" "+inputFile
+        cmd1="./sfit"+str(numParams)+"_"+sfitMode+" -f"+Stimulus.frequency+" -s"+Stimulus.fs+" -r"+str(numHarmonics)+" -tt "+inputFile
     else:       # blockSize defined explicitly
-        cmd1="./sfit"+str(numParams)+"_"+sfitMode+" -f"+Stimulus.frequency+" -s"+Stimulus.fs+" -r"+str(numHarmonics)+" -b"+str(varags[-1])+" "+inputFile
+        cmd1="./sfit"+str(numParams)+"_"+sfitMode+" -f"+Stimulus.frequency+" -s"+Stimulus.fs+" -r"+str(numHarmonics)+" -tt -b"+str(varags[-1])+" "+inputFile
 
     print("\n"+cmd1+"\n")
     sys.stdout.flush()

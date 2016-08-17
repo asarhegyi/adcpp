@@ -21,9 +21,9 @@ for lineItems in FILE:     #Read in file content
     #lineItems = lineItems.rstrip().split(",")
     lineItems = lineItems.rstrip().split()
     if (len(lineItems)>1):
-		time.append(float(lineItems[0]))
+        time.append(float(lineItems[0]))
     else:
-		time.append(index)
+        time.append(index)
     index=index+1
     data.append(float(lineItems[-1]))
 FILE.close() #EOF, close the FILE!
@@ -56,7 +56,7 @@ FILE.close() #EOF, close the FILE!
 # plot the real data
 plt.figure(figsize = (15, 10))
 plt.subplot(2, 1, 1)
-plt.plot(time, data, 'r.', label = 'Real Values')
+plt.plot(time, data, 'r.', label = 'Observations')
 plt.plot(time, fitted, 'g', label = 'Fitted Sinewave')
 plt.title('Sine fitting results')
 plt.xlabel('Samples')
@@ -65,7 +65,7 @@ plt.legend(shadow = True, fancybox = True)
 plt.grid(True)
 
 plt.subplot(2, 1, 2)
-plt.plot(time, residuals, 'r.-', label = 'Residual')
+plt.plot(time, residuals, 'r.-', label = 'Residuals')
 plt.xlabel('Samples')
 plt.ylabel('Residuals')
 plt.legend(shadow = True, fancybox = True)

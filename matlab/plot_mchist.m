@@ -155,13 +155,13 @@ function out = plot_mchist(args)
 
 
         % plot estimation error of the dc
-        h4 = figure;
+        h3 = figure;
         hist(Delta.dc,length(Delta.dc)/3);
-        hp4 = findobj(gca,'Type','patch');
-        set(hp4,'FaceColor','black','EdgeColor','none');
+        hp3 = findobj(gca,'Type','patch');
+        set(hp3,'FaceColor','black','EdgeColor','none');
         grid on;
-        hc4 = get(h4,'children');
-        set(hc4,'fontsize',16);
+        hc3 = get(h3,'children');
+        set(hc3,'fontsize',16);
         legend(sprintf('mean: %g\nstd: %g',Delta_mean.dc, Delta_std.dc),'Location','NE');
         title('Estimation Error of the dc');
         xlabel('(dc-dc\_est)/Q');
@@ -190,6 +190,7 @@ function out = plot_mchist(args)
  
     elseif strcmp('subplot',plotformat)
 
+        % Plot four (4) histograms in subplot format
         fig = figure;
         % plot estimation error of the amplitude
         [n1,x1]=hist(Delta.A,length(Delta.A)/3);
@@ -250,6 +251,7 @@ function out = plot_mchist(args)
         print('-dpng', sprintf('%s_hist.png', fname_noext));
 
         
+        % Plot the corresponding time sequences in subplot format for debug purposes
         fig = figure;
         % plot estimation error of the amplitude
         subplot(2,2,1), plot(Delta.A,'.-');
@@ -293,7 +295,24 @@ function out = plot_mchist(args)
         print('-deps', sprintf('%s_seq.eps', fname_noext));
         print('-dpng', sprintf('%s_seq.png', fname_noext));
         
-        
+
+        % plot runtime histogram
+        h4 = figure;
+        hist(Delta.rtime,length(Delta.rtime)/3);
+        hp4 = findobj(gca,'Type','patch');
+        set(hp4,'FaceColor','black','EdgeColor','none');
+        grid on;
+        hc4 = get(h4,'children');
+        set(hc4,'fontsize',16);
+        legend(sprintf('mean: %g\nstd: %g',Delta_mean.rtime, Delta_std.rtime),'Location','NE');
+        title('Normalized Runtime');
+        xlabel('(rtime)/N');
+        ylabel('Frequency');
+        qfigset;
+        print('-deps', sprintf('%s_rtime_hist.eps', fname_noext));
+        print('-dpng', sprintf('%s_rtime_hist.png', fname_noext));
+
+
     elseif strcmp('resolution',plotformat)
 
         fig = figure;

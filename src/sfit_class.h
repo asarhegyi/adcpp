@@ -467,7 +467,7 @@ inline void sfit::fitted_linear()
 	if (mode.compare("test_time") != 0)
 	{
 		dbl_array2file("fitted.dat", yf, nofSamples, "");
-		dbl_array2file("fitted_err.dat", yf_err, nofSamples, "");
+		//dbl_array2file("fitted_err.dat", yf_err, nofSamples, "");
 	}
 }
 
@@ -483,7 +483,10 @@ inline void sfit::fitted2_linear()
 
 	for(int index = 0; index < nofSamples; index++)
 	{
-		yfm[index] = amplitude[0] * cos(omega*time[index] + phase[0]) + dc;
+		yfm[index] = dc;
+
+		for (int harmonicsIndx = 0; harmonicsIndx < ampSize; harmonicsIndx++)
+			yfm[index] += amplitude[harmonicsIndx] * cos((harmonicsIndx+1)*omega*time[index] + phase[harmonicsIndx]);
 	}
 
 	dbl_array2file("fitted2.dat", yfm, nofSamples, "");
